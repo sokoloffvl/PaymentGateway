@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" />
     </ItemGroup>
 
 </Project>
