@@ -5,6 +5,6 @@ namespace Domain.Models;
 public class BankPaymentResponse
 {
     public string PaymentId { get; init; }
-    public BankPaymentStatus Status { get; init; }
+    public PaymentStatus Status { get; init; }
     public DeclineReason? DeclineReason { get; init; }
 }

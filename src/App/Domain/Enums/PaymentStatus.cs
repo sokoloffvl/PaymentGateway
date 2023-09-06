@@ -1,7 +1,9 @@
 ﻿namespace Domain.Enums;
 
-public enum BankPaymentStatus
+public enum PaymentStatus
 {
+    Created,
+    Processing,
     ProcessingFailed,
     Succeeded,
     Declined
