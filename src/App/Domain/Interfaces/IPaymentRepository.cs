@@ -5,6 +5,6 @@ namespace Domain.Interfaces;
 public interface IPaymentRepository
 {
     Task<Payment?> GetPaymentAsync(string paymentId);
-    Task CreatePaymentAsync(string paymentId);
+    Task CreatePaymentAsync(Payment payment);
     Task UpdatePaymentAsync(Payment payment);
 }
