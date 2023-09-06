@@ -1,5 +1,4 @@
-﻿using System.Collections.Concurrent;
-using Domain.Enums;
+﻿using Domain.Enums;
 using Domain.Interfaces;
 using Domain.Models;
 using Domain.Translators;
@@ -33,16 +32,18 @@ public class PaymentProcessingService : IPaymentProcessingService
         else
             payment.Processed(response.Status);
         
-        await paymentRepository.GetPaymentAsync(paymentId);
+        await paymentRepository.UpdatePaymentAsync(payment);
     }
 
     private async Task<BankPaymentResponse> TryProcessPayment(BankPaymentRequest request)
     {
+        var context = new Context(request.PaymentId);
         var policy = Policy
             .HandleResult<BankPaymentResponse>(r => r.Status == PaymentStatus.ProcessingFailed)
-            .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
+            .WaitAndRetryAsync(3, 
+                retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
 
-        var response = await policy.ExecuteAsync(async x => await bankClient.ProcessPayment(request), null);
+        var response = await policy.ExecuteAsync(async x => await bankClient.ProcessPayment(request), context);
 
         return response;
     }

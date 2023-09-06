@@ -26,12 +26,19 @@ public class Payment
 
     public bool IsProcessed()
     {
-        return Status > PaymentStatus.Processing;
+        return Status != PaymentStatus.Created;
     }
 
     public void Processed(PaymentStatus status)
     {
         Status = status;
+        DeclineReason = null;
+    }
+    
+    public void Created()
+    {
+        Status = PaymentStatus.Created;
+        DeclineReason = null;
     }
     
     public void Declined(DeclineReason declineReason)
