@@ -1,0 +1,13 @@
+﻿networks:
+  dev:
+    name: default
+
+services:
+  api:
+    ports:
+      - "5001:80"
+    build:
+      context: .
+      dockerfile: src/App/API/Dockerfile
+    networks:
+      - default
