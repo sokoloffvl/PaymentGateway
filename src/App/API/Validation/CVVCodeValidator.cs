@@ -5,8 +5,10 @@ namespace API.Validation;
 public class CVVCodeValidator : ValidationAttribute
 {
 
-    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    protected override ValidationResult IsValid(object? value, ValidationContext validationContext)
     {
+        if (value is null)
+            return new ValidationResult("Invalid CVV code");
         var strValue = (string)value;
         if (strValue.Length != 3)
             return new ValidationResult("Invalid CVV code");

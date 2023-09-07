@@ -10,7 +10,7 @@ public class CardPaymentExampleProvider : IExamplesProvider<CreatePaymentRequest
         return new CreatePaymentRequest
         {
             PaymentId = Guid.NewGuid().ToString(),
-            CardNumber = "1001 2002 3003 4005",
+            CardNumber = "378282246310005",
             CVV = "123",
             CardOwner = "Card Owner",
             Amount = 100,
