@@ -20,6 +20,8 @@ public class PaymentsController : ControllerBase
     }
     
     [HttpGet("{paymentId}")]
+    [ProducesResponseType(200, Type = typeof(PaymentInfoResponse))]
+    [ProducesResponseType(404)]
     public async Task<IActionResult> Get(string paymentId)
     {
         var payment = await paymentService.Get(paymentId);
@@ -29,11 +31,13 @@ public class PaymentsController : ControllerBase
     }
 
     [SwaggerRequestExample(typeof(CreatePaymentRequest), typeof(CardPaymentExampleProvider))]
+    [ProducesResponseType(201)]
+    [ProducesResponseType(400)]
     [HttpPost]
     public async Task<IActionResult> Create(CreatePaymentRequest request)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
         await paymentService.Create(request);
-        return Ok();
+        return Created($"/{request.PaymentId}", null);
     }
 }
