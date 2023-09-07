@@ -4,13 +4,12 @@ namespace Domain.Models;
 
 public class Payment
 {
-    public Payment(string paymentId, int merchantId, CardDetails cardDetails, DateTime createdAtUtc, DateTime processedAtUtc)
+    public Payment(string paymentId, int merchantId, CardDetails cardDetails)
     {
         PaymentId = paymentId;
         MerchantId = merchantId;
         CardDetails = cardDetails;
-        CreatedAtUtc = createdAtUtc;
-        ProcessedAtUtc = processedAtUtc;
+        CreatedAtUtc = DateTime.UtcNow;
         Status = PaymentStatus.Created;
     }
 
@@ -22,7 +21,7 @@ public class Payment
     public PaymentStatus Status { get; private set; }
     public DeclineReason? DeclineReason { get; private set; }
     public DateTime CreatedAtUtc { get; init; }
-    public DateTime ProcessedAtUtc { get; init; }
+    public DateTime ProcessedAtUtc { get; private set; }
 
     public bool IsProcessed()
     {
@@ -33,6 +32,7 @@ public class Payment
     {
         Status = status;
         DeclineReason = null;
+        ProcessedAtUtc = DateTime.UtcNow;
     }
     
     public void Created()

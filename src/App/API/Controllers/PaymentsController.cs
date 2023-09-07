@@ -1,3 +1,6 @@
+using API.Models;
+using API.Services;
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -7,13 +10,26 @@ namespace API.Controllers;
 [Route("[controller]")]
 public class PaymentsController : ControllerBase
 {
-    public PaymentsController()
+    private readonly IPaymentService paymentService;
+
+    public PaymentsController(IPaymentService paymentService)
     {
+        this.paymentService = paymentService;
     }
     
     [HttpGet("{paymentId}")]
-    public IActionResult Get(string paymentId)
+    public async Task<IActionResult> Get(string paymentId)
     {
+        var payment = await paymentService.Get(paymentId);
+        if (payment is not null)
+            return Ok(payment);
+        return NotFound(payment);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(CreatePaymentRequest request)
+    {
+        await paymentService.Create(request);
         return Ok();
     }
 }
