@@ -1,8 +1,14 @@
+using API.Installers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDatabase();
+builder.Services.AddMessageBus();
+builder.Services.AddMockBank();
+builder.Services.AddServices();
 
 var app = builder.Build();
 
