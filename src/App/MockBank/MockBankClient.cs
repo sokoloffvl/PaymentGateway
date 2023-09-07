@@ -18,12 +18,12 @@ public class MockBankClient : IMockBankClient
     public async Task<BankPaymentResponse> ProcessPayment(BankPaymentRequest paymentRequest)
     {
         var statuses = Enum.GetValues(typeof(BankPaymentStatus));
-        var randomStatus = (BankPaymentStatus) statuses.GetValue(random.Next(statuses.Length));
+        var randomStatus = (BankPaymentStatus) (statuses.GetValue(random.Next(statuses.Length)) ?? BankPaymentStatus.Declined);
         DeclineReason? randomDeclineReason = null;
         if (randomStatus == BankPaymentStatus.Declined)
         {
             var declineReasons = Enum.GetValues(typeof(DeclineReason));
-            randomDeclineReason = (DeclineReason) declineReasons.GetValue(random.Next(declineReasons.Length));
+            randomDeclineReason = (DeclineReason) (declineReasons.GetValue(random.Next(declineReasons.Length)) ?? DeclineReason.InvalidCardDetails);
         }
 
         var response = new BankPaymentResponse
