@@ -2,7 +2,7 @@
 
 public class CardDetails
 {
-    public CardDetails(string number, int cvv, string owner, int validToMonth, int validToYear)
+    public CardDetails(string number, string cvv, string owner, int validToMonth, int validToYear)
     {
         Number = number;
         CVV = cvv;
@@ -12,7 +12,7 @@ public class CardDetails
     }
 
     public string Number { get; }
-    public int CVV { get; }
+    public string CVV { get; }
     public string Owner { get; }
     public int ValidToMonth { get; }
     public int ValidToYear { get; }
