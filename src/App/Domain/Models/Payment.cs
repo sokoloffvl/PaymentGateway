@@ -4,11 +4,13 @@ namespace Domain.Models;
 
 public class Payment
 {
-    public Payment(string paymentId, int merchantId, CardDetails cardDetails)
+    public Payment(string paymentId, int merchantId, CardDetails cardDetails, string currency, decimal amount)
     {
         PaymentId = paymentId;
         MerchantId = merchantId;
         CardDetails = cardDetails;
+        Currency = currency;
+        Amount = amount;
         CreatedAtUtc = DateTime.UtcNow;
         Status = PaymentStatus.Created;
     }

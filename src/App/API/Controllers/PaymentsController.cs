@@ -1,7 +1,9 @@
+using API.ExampleProviders;
 using API.Models;
 using API.Services;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace API.Controllers;
 
@@ -26,9 +28,11 @@ public class PaymentsController : ControllerBase
         return NotFound(payment);
     }
 
+    [SwaggerRequestExample(typeof(CreatePaymentRequest), typeof(CardPaymentExampleProvider))]
     [HttpPost]
     public async Task<IActionResult> Create(CreatePaymentRequest request)
     {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
         await paymentService.Create(request);
         return Ok();
     }
