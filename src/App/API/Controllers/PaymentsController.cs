@@ -1,3 +1,4 @@
+using API.Authentication;
 using API.ExampleProviders;
 using API.Models;
 using API.Services;
@@ -37,6 +38,7 @@ public class PaymentsController : ControllerBase
     public async Task<IActionResult> Create(CreatePaymentRequest request)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
+        request.MerchantId = (HttpContext.User as MerchantPrincipal)!.MerchantId;
         await paymentService.Create(request);
         return Created($"/{request.PaymentId}", null);
     }

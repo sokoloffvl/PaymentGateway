@@ -8,6 +8,6 @@ public static class CreatePaymentRequestTranslator
     public static Payment ToDomain(this CreatePaymentRequest request)
     {
         var cardDetails = new CardDetails(request.CardNumber, request.CVV, request.CardOwner, request.ValidToMonth, request.ValidToYear);
-        return new Payment(request.PaymentId, 0, cardDetails, request.Currency, request.Amount);
+        return new Payment(request.PaymentId, request.MerchantId, cardDetails, request.Currency, request.Amount);
     }
 }

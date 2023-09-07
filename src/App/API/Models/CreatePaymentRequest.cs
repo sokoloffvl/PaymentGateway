@@ -28,4 +28,5 @@ public class CreatePaymentRequest
 
     [Range(1, 12)]
     public int ValidToMonth { get; init;}
+    public int MerchantId { get; set; }
 }
