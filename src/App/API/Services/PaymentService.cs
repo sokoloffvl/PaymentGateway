@@ -17,14 +17,17 @@ public class PaymentService : IPaymentService
     private readonly IPaymentRepository paymentRepository;
     private readonly IMaskingService maskingService;
     private readonly IBackgroundQueue<Payment> backgroundQueue;
+    private readonly ILogger<PaymentService> logger;
 
     public PaymentService(IPaymentRepository paymentRepository,
         IMaskingService maskingService,
-        IBackgroundQueue<Payment> backgroundQueue)
+        IBackgroundQueue<Payment> backgroundQueue,
+        ILogger<PaymentService> logger)
     {
         this.paymentRepository = paymentRepository;
         this.maskingService = maskingService;
         this.backgroundQueue = backgroundQueue;
+        this.logger = logger;
     }
 
     public async Task Create(CreatePaymentRequest request)
@@ -35,9 +38,13 @@ public class PaymentService : IPaymentService
             await paymentRepository.CreatePaymentAsync(payment);
             backgroundQueue.Enqueue(payment);
         }
+        catch (InvalidOperationException e)
+        {
+            logger.LogWarning(e, "Same request already exists: {PaymentId}", request.PaymentId);
+        }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            logger.LogError(e, "Exception occured on payment {PaymentId} creation", request.PaymentId);
         }
     }
 
@@ -61,7 +68,7 @@ public class PaymentService : IPaymentService
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            logger.LogError(e, "Exception occured on payment {PaymentId} retrieval", paymentId);
             return null;
         }
     }
