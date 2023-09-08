@@ -20,7 +20,7 @@ conflating queue implementation.
 For more details see [improvement areas](#areas-of-improvement) or [bonus points](#bonus-points)
 # How to run:  
 - Use preferred IDE run/debug actions. Requires .net sdk 6 > installed
-- Use `docker-compose build` and `docker-compose up` commands. Requires docker installed
+- Use `docker-compose build` and `docker-compose up` commands from the solution's root folder. Requires docker installed
 
 # How to use:
 - Swagger is available at http://localhost:5001/swagger/index.html
