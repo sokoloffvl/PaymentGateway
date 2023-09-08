@@ -1,7 +1,7 @@
 # PaymentGateway
 Checkout.com .NET take-home challenge  
 Completed by: Vladimir Sokolov  
-https://github.com/sokoloffvl/PaymentGateway/actions/workflows/dotnet.yml/badge.svg
+![workflow](https://github.com/sokoloffvl/PaymentGateway/actions/workflows/dotnet.yml/badge.svg)
 # Project description  
 This solution contains one main executable project `API`, set of different levels abstractions (`Domain`, `Infrastructure`, `MockBank`), and multiple test projects.
 Main purpose was to imitate real payment gateway behavior with some limitations and assumptions.
