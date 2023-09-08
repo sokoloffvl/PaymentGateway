@@ -5,7 +5,7 @@ using FluentAssertions;
 using Infrastructure.EventBus;
 using NUnit.Framework;
 
-namespace Application.UnitTests;
+namespace Infrastructure.UnitTests;
 
 public class ConflatingQueueTests
 {

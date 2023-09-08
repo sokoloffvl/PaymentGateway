@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{7F64E04F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockBank", "src\App\MockBank\MockBank.csproj", "{87FA726E-5F1E-4116-BAAB-258C590F5B28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.UnitTests", "src\Test\Application.UnitTests\Application.UnitTests.csproj", "{B14D343E-F85B-41E9-95B0-802A763553FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.UnitTests", "src\Test\Infrastructure.UnitTests\Infrastructure.UnitTests.csproj", "{B14D343E-F85B-41E9-95B0-802A763553FC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "src\Test\IntegrationTests\IntegrationTests.csproj", "{02E701F5-D23D-4840-A28A-6DE9FF8DCFB1}"
 EndProject

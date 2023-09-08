@@ -8,7 +8,7 @@ using Infrastructure.Repository;
 using Microsoft.Extensions.Caching.Memory;
 using NUnit.Framework;
 
-namespace Application.UnitTests;
+namespace Infrastructure.UnitTests;
 
 public class InMemoryPaymentRepositoryTests
 {
